@@ -1,0 +1,48 @@
+<import src="../../../templates/cinemaMap/cinemaMap.wxml"></import>
+
+<view wx:if="{{cinemaDetail}}">
+  <view>   
+<template is="cinemaMap" data='{{cinemaData}}'/>
+  </view>
+  <view>
+    <view>
+      <select-movie movies='{{movies}}' bindselectMovie='selectMovie'/>
+    </view>
+    <view class="movie-info" wx:if="{{movie}}">
+      <view class="movie-title">
+        <text class="title line-ellipsis" >{{movie.nm}}</text>
+        <text class="grade">
+          <text wx:if="{{!movie.globalReleased}}">{{movie.wish}}<text class="small">想看</text></text>
+          <text wx:elif="{{movie.sc !== 0.0}}">{{movie.sc}}<text class="small">分</text></text>
+        <text wx:else=""><text class="small">暂无评分</text></text>
+        </text>       
+      </view>
+      <view class="movie-desc">{{movie.desc}}</view>
+    </view>
+  </view>
+  <view>
+       <select-time days='{{days}}' bindselectDayEvent='selectDay' defaultSelect='{{day}}'></select-time>
+    </view>
+    <view>
+      <view wx:if="{{timeList.length}}">
+        <view class="time" wx:for="{{timeList}}" wx:key="{{item.id}}" data-info="{{item}}" class="item" bindtap="buyTicket">
+          <view class="time-block box">
+            <view class="begin">{{item.tm}}</view>
+            <view class="end">{{item.endTime}}散场</view>
+          </view>
+          <view class="info-block box">
+              <view class="lan">{{item.lang}} {{item.tp}}</view>
+              <view class="hall">{{item.th}}</view>
+          </view>
+          <view class="price-block box">
+            <view class="price">{{item.sellPr}}元</view>
+          </view>
+          <view class="button-block box">
+            <view class="button">购票</view>
+          </view>
+
+        </view>
+      </view>
+    </view>
+
+</view>

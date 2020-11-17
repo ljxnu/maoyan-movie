@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText":"",
+  "usingComponents": {
+    "select-time":"/components/select-time/select-time"
+  }
+}
